@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  dashdot:
+    container_name: dashdot
+    image: mauricenino/dashdot
+    environment:
+      - DASHDOT_ENABLE_CPU_TEMPS=true
+      - DASHDOT_OVERRIDE_OS=Ubuntu
+    volumes:
+      - /:/mnt/host:ro
+    ports:
+      - 3000:3000
+      - 3001:3001
+      - 3002:3002
+    mem_limit: 4g
+    cpu_shares: 768
+    privileged: true
+    security_opt:
+      - no-new-privileges:true
+    restart: on-failure:5
